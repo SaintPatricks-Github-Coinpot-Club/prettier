@@ -33,13 +33,14 @@
   variants:
     - "[CommonMark](https://commonmark.org)"
     - "[GitHub-Flavored Markdown](https://github.github.com/gfm/)"
-    - "[MDX](https://mdxjs.com)"
+    - "[MDX v1](https://mdxjs.com)"
 - name: YAML
   nameLink: https://yaml.org
   showName: true
   image: /images/languages/tools_yaml.svg
   variants: []
 - name: Community Plugins
+  nameLink: ./docs/en/plugins.html#community-plugins
   showName: true
   image: /images/languages/tools_wip.svg
   variants:
@@ -48,5 +49,7 @@
     - "[Java](https://github.com/jhipster/prettier-java)"
     - "[PHP](https://github.com/prettier/plugin-php)"
     - "[Ruby](https://github.com/prettier/plugin-ruby)"
+    - "[Rust](https://github.com/jinxdash/prettier-plugin-rust)"
     - "[TOML](https://github.com/bd82/toml-tools/tree/master/packages/prettier-plugin-toml)"
     - "[XML](https://github.com/prettier/plugin-xml)"
+    - "[And more...](./docs/en/plugins.html#community-plugins)"

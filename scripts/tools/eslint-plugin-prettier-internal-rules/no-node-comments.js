@@ -34,6 +34,24 @@ module.exports = {
     messages: {
       [messageId]: "Do not access node.comments.",
     },
+    schema: {
+      type: "array",
+      items: {
+        anyOf: [
+          { type: "string" },
+          {
+            type: "object",
+            properties: {
+              file: { type: "string" },
+              functions: {
+                type: "array",
+                items: { type: "string" },
+              },
+            },
+          },
+        ],
+      },
+    },
   },
   create(context) {
     const fileName = context.getFilename();
@@ -47,7 +65,7 @@ module.exports = {
           path.join(__dirname, "../../..", file),
           functions ? new Set(functions) : true,
         ];
-      })
+      }),
     );
     // avoid report on `const {comments} = node` twice
     const reported = new Set();

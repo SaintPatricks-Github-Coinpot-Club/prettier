@@ -7,15 +7,16 @@ Prettier is an opinionated code formatter with support for:
 
 - JavaScript (including experimental features)
 - [JSX](https://facebook.github.io/jsx/)
-- [Angular](https://angular.io/)
+- [Angular](https://angular.dev/)
 - [Vue](https://vuejs.org/)
 - [Flow](https://flow.org/)
 - [TypeScript](https://www.typescriptlang.org/)
-- CSS, [Less](http://lesscss.org/), and [SCSS](https://sass-lang.com)
+- CSS, [Less](https://lesscss.org/), and [SCSS](https://sass-lang.com)
 - [HTML](https://en.wikipedia.org/wiki/HTML)
+- [Ember/Handlebars](https://handlebarsjs.com/)
 - [JSON](https://json.org/)
 - [GraphQL](https://graphql.org/)
-- [Markdown](https://commonmark.org/), including [GFM](https://github.github.com/gfm/) and [MDX](https://mdxjs.com/)
+- [Markdown](https://commonmark.org/), including [GFM](https://github.github.com/gfm/) and [MDX v1](https://mdxjs.com/)
 - [YAML](https://yaml.org/)
 
 It removes all original styling[\*](#footnotes) and ensures that all outputted code conforms to a consistent style. (See this [blog post](https://jlongster.com/A-Prettier-Formatter))
@@ -42,7 +43,7 @@ foo(
   reallyLongArg(),
   omgSoManyParameters(),
   IShouldRefactorThis(),
-  isThereSeriouslyAnotherOne()
+  isThereSeriouslyAnotherOne(),
 );
 ```
 

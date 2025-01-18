@@ -1,6 +1,16 @@
 html body {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
 
   overflow-x: hidden;
 }
@@ -154,7 +164,8 @@ em {
 }
 
 .mainContainer .tldrSection ul li a {
-  font-size: 18px;
+  color: inherit !important;
+  font-size: inherit;
 }
 
 .tldrSection li::before {
@@ -415,10 +426,15 @@ em {
 }
 
 .ecosystemSubSection p {
-  padding-top: 4px !important;
+  padding-top: 0 !important;
   font-size: 0.9em;
   color: rgb(176, 196, 206) !important;
   line-height: 1.2em !important;
+}
+
+.ecosystemSubSection ul,
+.ecosystemSubSection ul a {
+  color: rgb(176, 196, 206) !important;
 }
 
 .growOnHover {
@@ -587,4 +603,9 @@ a {
 }
 .tabs .nav-tabs > div {
   padding: 4px 12px;
+}
+
+/* Syntax Section */
+.syntaxLink:hover {
+  text-decoration: underline;
 }

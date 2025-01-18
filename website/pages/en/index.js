@@ -90,17 +90,23 @@ const TldrSection = ({ language }) => (
             <li>An opinionated code formatter</li>
             <li>Supports many languages</li>
             <li>Integrates with most editors</li>
-            <li>Has few options</li>
+            <li>
+              <a href={"/docs/" + language + "/option-philosophy.html"}>
+                Has few options &raquo;
+              </a>
+            </li>
           </ul>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h2>Why?</h2>
           <ul style={{ flex: "1" }}>
-            <li>You press save and code is formatted</li>
+            <li>Your code is formatted on save</li>
             <li>No need to discuss style in code review</li>
             <li>Saves you time and energy</li>
             <li>
-              <a href={"/docs/" + language + "/why-prettier.html"}>And more</a>
+              <a href={"/docs/" + language + "/why-prettier.html"}>
+                And more &raquo;
+              </a>
             </li>
           </ul>
         </div>
@@ -149,7 +155,7 @@ Language.propTypes = {
 const LanguagesSection = () => {
   const languageChunks = siteConfig.supportedLanguages.reduce(
     (acc, language) => {
-      const last = acc[acc.length - 1];
+      const last = acc.at(-1);
       if (
         last &&
         last.length < 2 &&
@@ -163,7 +169,7 @@ const LanguagesSection = () => {
       }
       return acc;
     },
-    []
+    [],
   );
 
   return (
@@ -198,7 +204,7 @@ const Editor = ({ content = "", image, name }) => (
     <img className="editorImage" src={image} />
     <div className="editorInfo">
       <h3 className="editorName">{name}</h3>
-      <MarkdownBlock>{content.replace(/\n/g, "  \n")}</MarkdownBlock>
+      <MarkdownBlock>{content.replaceAll("\n", "  \n")}</MarkdownBlock>
     </div>
   </div>
 );
@@ -283,36 +289,39 @@ const UsersSection = ({ language }) => {
         >
           <div style={{ display: "flex", marginTop: "22px" }}>
             <a
-              href="https://2020.stateofjs.com/en-US/other-tools/utilities"
-              className="growOnHover"
+              href="https://2021.stateofjs.com/en-US/other-tools/utilities"
+              style={{ marginTop: "15px" }}
             >
               <img
                 src="/images/state_of_js_grey.svg"
-                style={{ height: "100px" }}
+                style={{ width: "80px" }}
               />
             </a>
             <div style={{ marginLeft: ".7em", width: "260px" }}>
-              <p>
-                Regularly used by more than <strong>70%</strong> of respondents
-                to State of JS 2020
-              </p>
-              <Button href="https://2020.stateofjs.com/en-US/other-tools/utilities">
-                Go to Survey Results
-              </Button>
+              <p>Regularly used by:</p>
+              <ul style={{ marginBottom: "0" }}>
+                <li>
+                  <a href="https://2021.stateofjs.com/en-US/other-tools/#utilities">
+                    More than 83% of respondents to State of JS 2021.
+                  </a>
+                </li>
+                <li>
+                  <a href="https://2020.stateofjs.com/en-US/other-tools/#utilities">
+                    More than 70% of respondents to State of JS 2020.
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
 
           <div style={{ display: "flex", marginTop: "22px" }}>
-            <a
-              href="https://github.com/prettier/prettier"
-              className="growOnHover"
-            >
-              <img src="/images/github_grey.svg" style={{ height: "100px" }} />
+            <a href="https://github.com/prettier/prettier">
+              <img src="/images/github_grey.svg" style={{ width: "80px" }} />
             </a>
             <div style={{ marginLeft: ".7em", width: "260px" }}>
               <p>
                 More than{" "}
-                <strong data-placeholder="dependent-github">3.2 million</strong>{" "}
+                <strong data-placeholder="dependent-github">8.9 million</strong>{" "}
                 dependent repositories on GitHub
               </p>
               <Button href="https://github.com/prettier/prettier/network/dependents">
@@ -322,15 +331,13 @@ const UsersSection = ({ language }) => {
           </div>
 
           <div style={{ display: "flex", marginTop: "22px" }}>
-            <a
-              href="https://npmjs.com/package/prettier"
-              className="growOnHover"
-            >
-              <img src="/images/npm_grey.svg" style={{ height: "100px" }} />
+            <a href="https://npmjs.com/package/prettier">
+              <img src="/images/npm_grey.svg" style={{ width: "80px" }} />
             </a>
             <div style={{ marginLeft: ".7em", width: "260px" }}>
               <p>
-                More than <strong data-placeholder="dependent-npm">9000</strong>{" "}
+                More than{" "}
+                <strong data-placeholder="dependent-npm">18.7k</strong>{" "}
                 dependent packages on npm
               </p>
               <Button href="https://www.npmjs.com/browse/depended/prettier">
@@ -348,6 +355,44 @@ UsersSection.propTypes = {
   language: PropTypes.string,
 };
 
+const SyntaxSection = () => (
+  // eslint-disable-next-line react/jsx-no-target-blank
+  <a
+    href="https://sentry.shop/products/syntax-prettier-tee"
+    target="_blank"
+    className="syntaxLink"
+    style={{
+      color: "black",
+      fontSize: 20,
+      fontWeight: "bold",
+    }}
+  >
+    <div
+      style={{
+        backgroundColor: "#f8bc45",
+        justifyContent: "center",
+        display: "flex",
+        paddingTop: 20,
+      }}
+    >
+      <div
+        style={{
+          width: 860,
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <p>
+          Limited edition tshirts are now available to buy! $10 per tshirt goes
+          to maintain the project.
+        </p>
+        <img width={860} src="/images/syntaxfm/1.webp" />
+      </div>
+    </div>
+  </a>
+);
+
 class Index extends React.Component {
   render() {
     const language = this.props.language || "en";
@@ -357,6 +402,7 @@ class Index extends React.Component {
         <script src="landing.js" />
         <HomeSplash language={language} />
         <div className="mainContainer landingContainer">
+          <SyntaxSection />
           <TldrSection language={language} />
           <LanguagesSection />
           <EditorSupportSection />

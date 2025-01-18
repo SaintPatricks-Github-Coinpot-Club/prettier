@@ -1,4 +1,5 @@
 "use strict";
+const path = require("node:path");
 
 module.exports = {
   entry: {
@@ -6,13 +7,13 @@ module.exports = {
   },
   output: {
     filename: "[name].js",
-    path: __dirname + "/static/",
+    path: path.join(__dirname, "static"),
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
+        test: /\.js$/u,
+        exclude: /node_modules/u,
         loader: "babel-loader",
         options: {
           presets: ["@babel/env", "@babel/react"],
