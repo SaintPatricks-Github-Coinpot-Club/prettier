@@ -1,29 +1,21 @@
-"use strict";
-
-const { isNonEmptyArray } = require("../common/util.js");
-
 /**
- * @typedef {import("./types/estree").Node} Node
+ * @import {Node} from "./types/estree.js"
  */
 
-function locStart(node, opts) {
-  const { ignoreDecorators } = opts || {};
+function locStart(node) {
+  const start = node.range?.[0] ?? node.start;
 
   // Handle nodes with decorators. They should start at the first decorator
-  if (!ignoreDecorators) {
-    const decorators =
-      (node.declaration && node.declaration.decorators) || node.decorators;
-
-    if (isNonEmptyArray(decorators)) {
-      return locStart(decorators[0]);
-    }
+  const firstDecorator = (node.declaration?.decorators ?? node.decorators)?.[0];
+  if (firstDecorator) {
+    return Math.min(locStart(firstDecorator), start);
   }
 
-  return node.range ? node.range[0] : node.start;
+  return start;
 }
 
 function locEnd(node) {
-  return node.range ? node.range[1] : node.end;
+  return node.range?.[1] ?? node.end;
 }
 
 /**
@@ -32,7 +24,8 @@ function locEnd(node) {
  * @returns {boolean}
  */
 function hasSameLocStart(nodeA, nodeB) {
-  return locStart(nodeA) === locStart(nodeB);
+  const nodeAStart = locStart(nodeA);
+  return Number.isInteger(nodeAStart) && nodeAStart === locStart(nodeB);
 }
 
 /**
@@ -41,7 +34,8 @@ function hasSameLocStart(nodeA, nodeB) {
  * @returns {boolean}
  */
 function hasSameLocEnd(nodeA, nodeB) {
-  return locEnd(nodeA) === locEnd(nodeB);
+  const nodeAEnd = locEnd(nodeA);
+  return Number.isInteger(nodeAEnd) && nodeAEnd === locEnd(nodeB);
 }
 
 /**
@@ -53,9 +47,4 @@ function hasSameLoc(nodeA, nodeB) {
   return hasSameLocStart(nodeA, nodeB) && hasSameLocEnd(nodeA, nodeB);
 }
 
-module.exports = {
-  locStart,
-  locEnd,
-  hasSameLocStart,
-  hasSameLoc,
-};
+export { hasSameLoc, hasSameLocStart, locEnd, locStart };
